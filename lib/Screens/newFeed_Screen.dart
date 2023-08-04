@@ -1,9 +1,12 @@
+import 'package:facebook_clone/Models/models.dart';
 import 'package:facebook_clone/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class newFeed_Screen extends StatelessWidget {
-  const newFeed_Screen({super.key});
+  List<People> peopleList = People.generate();
+
+  newFeed_Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,50 +109,271 @@ class newFeed_Screen extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 5,
-                color: Colors.grey,
+          //
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _getContainerFor(),
+                  //
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 5, right: 5, left: 5, bottom: 5),
+                    child: Flexible(
+                      flex: 0,
+                      child: Container(
+                        width: double.maxFinite,
+                        height: 200,
+                        //  color: Colors.red,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: peopleList.length,
+                            itemBuilder: (context, index) {
+                              if (index == 0) {
+                                return Container(
+                                  width: 120,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    border:
+                                        Border.all(width: 1, color: Colors.red),
+                                  ),
+                                  //
+                                  child: Stack(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(15),
+                                              topRight: Radius.circular(15),
+                                            ),
+                                            child: Image.network(
+                                              "https://cdn.24h.com.vn/upload/2-2021/images/2021-05-19/158422967_443784680181413_611567295639411291_n-1621437281-128-width1080height1350.jpg",
+                                              height: 120,
+                                              width: double.infinity,
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          const Padding(
+                                            padding:
+                                                EdgeInsets.only(bottom: 10),
+                                            child: Text("Create Story"),
+                                          ),
+                                        ],
+                                      ),
+                                      //
+                                      Positioned(
+                                        // bottom: 0,
+                                        top: 100,
+                                        left: 0,
+                                        right: 0,
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: secondaryColor,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  spreadRadius: 2,
+                                                  blurRadius: 2,
+                                                  color: Colors.white,
+                                                ),
+                                              ]),
+                                          child: IconButton(
+                                            onPressed: () {},
+                                            icon: const Icon(Icons.add),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  child: Container(
+                                    width: 120,
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: secondaryColor,
+                                      ),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Expanded(
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                child: Image.network(
+                                                  peopleList[index].imagesPost,
+                                                  width: double.maxFinite,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        //
+                                        Positioned(
+                                          left: 10,
+                                          top: 10,
+                                          child: CircleAvatar(
+                                            radius: 23,
+                                            backgroundColor: Colors.amber,
+                                            child: CircleAvatar(
+                                              radius: 20,
+                                              backgroundImage: NetworkImage(
+                                                  peopleList[index].profile),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                            }),
+                      ),
+                    ),
+                  ),
+                  //
+                  _getContainerFor(),
+                  //
+                  Flexible(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      //hieght
+                      child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: peopleList.length - 1,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          border: Border.all(
+                                              width: 3, color: secondaryColor),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              spreadRadius: 2,
+                                              blurRadius: 4,
+                                              color: Colors.amber,
+                                            )
+                                          ],
+                                        ),
+                                        child: CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              peopleList[index + 1].profile),
+                                        ),
+                                      ),
+                                      //
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      //
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(peopleList[index + 1].userName),
+                                          Row(
+                                            children: [
+                                              Text(peopleList[index + 1].time),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              // ignore: prefer_const_constructors, deprecated_member_use
+                                              Icon(
+                                                // ignore: deprecated_member_use
+                                                FontAwesomeIcons.earth,
+                                                size: 20,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      const Icon(Icons.more_horiz_outlined),
+                                      const Icon(Icons.close),
+                                    ],
+                                  ),
+                                ),
+                                //
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Text(
+                                    peopleList[index + 1].title,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                                //
+                                ClipRRect(
+                                  child: Image.network(
+                                    peopleList[index + 1].imagesPost,
+                                    height: 500,
+                                    width: double.infinity,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                //
+                                Row(
+                                  children: [
+                                    Image.network(
+                                      "https://banner2.cleanpng.com/20180319/rxw/kisspng-facebook-like-button-facebook-like-button-computer-facebook-new-like-symbol-5ab036a9b8fac7.0338659015214977697577.jpg",
+                                      width: 40,
+                                    ),
+                                  ],
+                                ),
+                                const Divider(
+                                  thickness: 2,
+                                ),
+                                //
+                                _getContainerFor(),
+                              ],
+                            );
+                          }),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-          //
-          Flexible(
-            flex: 1,
-            child: Container(
-              width: double.maxFinite,
-              height: 200,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                    if (index == 0) {
-                      return Container(
-                        width: 120,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(width: 1, color: Colors.red),
-                        ),
-                      );
-                    } else {
-                      return Container(
-                        width: 120,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                              width: 1,
-                              color: secondaryColor,
-                            )),
-                      );
-                    }
-                  }),
-            ),
-          ),
+          )
         ],
       ),
     );
   }
+}
+
+Widget _getContainerFor() {
+  return Container(
+    decoration: BoxDecoration(
+      border: Border.all(
+        width: 5,
+        color: Colors.grey,
+      ),
+    ),
+  );
 }
