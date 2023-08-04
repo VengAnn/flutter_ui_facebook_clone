@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+// ignore: unused_import
 import 'Screens/LoginScreen.dart';
+import 'Screens/SplashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+      // ignore: prefer_const_constructors
+      home: SplashScreen(),
     );
   }
 }

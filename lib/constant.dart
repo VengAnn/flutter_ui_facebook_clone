@@ -13,5 +13,6 @@ const kPrimaryGradientColor = LinearGradient(
 const secondaryColor = Color.fromARGB(255, 214, 18, 211);
 const kTextColor = Color(0xFF356436);
 
+// ignore: constant_identifier_names
 const KLogoFbUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png";
