@@ -3,6 +3,7 @@ import 'package:facebook_clone/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// ignore: camel_case_types, must_be_immutable
 class newFeed_Screen extends StatelessWidget {
   List<People> peopleList = People.generate();
 
@@ -17,6 +18,7 @@ class newFeed_Screen extends StatelessWidget {
             flex: 0,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
+              // ignore: sized_box_for_whitespace
               child: Container(
                 width: double.maxFinite,
                 // color: Colors.red,
@@ -35,6 +37,7 @@ class newFeed_Screen extends StatelessWidget {
                         const SizedBox(
                           width: 5,
                         ),
+                        // ignore: sized_box_for_whitespace
                         Container(
                           width: MediaQuery.of(context).size.width * 0.85,
                           height: 40,
@@ -123,6 +126,7 @@ class newFeed_Screen extends StatelessWidget {
                         top: 5, right: 5, left: 5, bottom: 5),
                     child: Flexible(
                       flex: 0,
+                      // ignore: sized_box_for_whitespace
                       child: Container(
                         width: double.maxFinite,
                         height: 200,
@@ -252,11 +256,12 @@ class newFeed_Screen extends StatelessWidget {
                   _getContainerFor(),
                   //
                   Flexible(
+                    // ignore: sized_box_for_whitespace
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       //hieght
                       child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: peopleList.length - 1,
                           itemBuilder: (context, index) {
@@ -339,16 +344,62 @@ class newFeed_Screen extends StatelessWidget {
                                   ),
                                 ),
                                 //
-                                Row(
-                                  children: [
-                                    Image.network(
-                                      "https://banner2.cleanpng.com/20180319/rxw/kisspng-facebook-like-button-facebook-like-button-computer-facebook-new-like-symbol-5ab036a9b8fac7.0338659015214977697577.jpg",
-                                      width: 40,
-                                    ),
-                                  ],
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Row(
+                                    children: [
+                                      Image.network(
+                                        "https://banner2.cleanpng.com/20180319/rxw/kisspng-facebook-like-button-facebook-like-button-computer-facebook-new-like-symbol-5ab036a9b8fac7.0338659015214977697577.jpg",
+                                        width: 30,
+                                      ),
+                                      //
+                                      Text(peopleList[index + 1].like),
+                                      //
+                                      const Spacer(),
+                                      Text(peopleList[index + 1].comment),
+                                      const Text("Commets"),
+                                      const Spacer(),
+                                      Text(peopleList[index + 1].share),
+                                      const Text("Shares"),
+                                    ],
+                                  ),
                                 ),
                                 const Divider(
                                   thickness: 2,
+                                ),
+                                //
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Row(
+                                    // mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: _getImageIconLikeCShare(
+                                          'https://cdn-icons-png.flaticon.com/128/4407/4407467.png',
+                                        ),
+                                      ),
+                                      //
+                                      const Text("Like"),
+                                      const Spacer(),
+                                      //
+                                      _getImageIconLikeCShare(
+                                        "https://cdn-icons-png.flaticon.com/128/10407/10407195.png",
+                                      ),
+                                      const Text("Coments"),
+                                      const Spacer(),
+                                      //
+                                      _getImageIconLikeCShare(
+                                        "https://cdn-icons-png.flaticon.com/128/2958/2958783.png",
+                                      ),
+                                      const Text("Share"),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
                                 ),
                                 //
                                 _getContainerFor(),
@@ -374,6 +425,17 @@ Widget _getContainerFor() {
         width: 5,
         color: Colors.grey,
       ),
+    ),
+  );
+}
+
+// ignore: unused_element
+Widget _getImageIconLikeCShare(String linkimageNetWork) {
+  return ClipRRect(
+    child: Image.network(
+      // ignore: unnecessary_string_interpolations
+      "$linkimageNetWork",
+      width: 20,
     ),
   );
 }

@@ -1,3 +1,7 @@
+// ignore: file_names
+// ignore_for_file: avoid_unnecessary_containers
+
+import 'package:facebook_clone/Screens/Menu_Screen.dart';
 import 'package:facebook_clone/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       length: 6,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(201, 255, 255, 255),
+          backgroundColor: const Color.fromARGB(201, 255, 255, 255),
           elevation: 0,
           title: const Text(
             "Facebook",
@@ -110,21 +114,22 @@ class HomeScreen extends StatelessWidget {
           children: [
             // ignore: prefer_const_constructors
             newFeed_Screen(),
+
             Container(
-              child: Text("Add"),
+              child: const Text("Add"),
             ),
             Container(
-              child: Text("Add"),
+              child: const Text("Add"),
             ),
             Container(
-              child: Text("Add"),
+              child: const Text("Add"),
             ),
             Container(
-              child: Text("Add"),
+              child: const Text("Add"),
             ),
-            Container(
-              child: Text("Add"),
-            ),
+            //Menu Screnn
+            // ignore: prefer_const_constructors
+            Menu_Screen(),
           ],
         ),
       ),

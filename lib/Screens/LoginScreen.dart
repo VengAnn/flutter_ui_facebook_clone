@@ -3,7 +3,7 @@ import 'package:facebook_clone/constant.dart';
 
 import 'HomeScreen.dart';
 
-// ignore: must_be_immutable
+// ignore: must_be_immutable, use_key_in_widget_constructors
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,7 @@ class LoginScreen extends StatelessWidget {
             )),
       ),
       //
+      // ignore: avoid_unnecessary_containers
       body: Container(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -39,7 +40,7 @@ class LoginScreen extends StatelessWidget {
               _getElevatedButton("Login", context, secondaryColor, null, () {
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                   builder: (context) {
-                    return HomeScreen();
+                    return const HomeScreen();
                   },
                 ), (route) => false);
               }),
